@@ -24,4 +24,13 @@ app.get('/api/quotes', (req, res, next) => {
     res.json({quotes: quotes});
 });
 
+app.post('/api/quotes', (req, res, next) => {
+    if (req.query.person && req.query.quote) {
+        res.status(201).json({
+            quote: {person: req.query.person, quote: req.query.quote}
+        })
+    }
+    res.status(400).send();
+})
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
